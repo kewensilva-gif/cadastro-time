@@ -132,5 +132,12 @@ void main(){
             } while(sair == 'y' || sair == 'Y');
 
         break;
+
+        case 0:
+            printf("\nSaindo do programa...");
+        break;
+
+        default:
+            printf("\nOpcao invalida");
     }
 }
