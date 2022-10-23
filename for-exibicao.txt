@@ -1,0 +1,10 @@
+            for(int x = 0; x <= cfut; x++){
+                printf("\n\n%s\n", futebol[x].nome);
+                for(int y = 0; y < contFut; y++){
+                    printf("Jogador: %s", futebol[x].jogadores[y].jogador);
+                    printf("\nIdade: %d", futebol[x].jogadores[y].idade);
+                    printf("\nPeso: %.2f", futebol[x].jogadores[y].peso);
+                    printf("\nAltura: %.2f", futebol[x].jogadores[y].altura);
+                    printf("\nPosição: %s", futebol[x].jogadores[y].posicao);
+                }
+            }
