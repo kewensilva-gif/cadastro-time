@@ -5,12 +5,12 @@
 void main(){
     setlocale(LC_ALL, "Portuguese");
 
-    int op, contFut, cfut, contVol, cvol, contBas, cbas, check;
+    int op, op2, contFut, cfut, contVol, cvol, contBas, cbas, check;
     contFut = cfut = contVol = cvol = contBas = cbas = 0;
-    char sair;
+    char sair, auxNome[30];
 
     struct jogador{
-        char jogador[30], posicao[30];
+        char jogador[30], posicao[30], tabIMC[30];
         int idade;
         float peso, altura, imc, proteina, carbo, lipidios, calorias;
     };
@@ -56,6 +56,21 @@ void main(){
 
                     futebol[cfut].jogadores[contFut].imc = futebol[cfut].jogadores[contFut].peso / pow(futebol[cfut].jogadores[contFut].altura,2);
                     printf("\n%.2f\n", futebol[cfut].jogadores[contFut].imc);
+
+                    // Tabela IMC
+                    if(futebol[cfut].jogadores[contFut].imc < 18,5){
+                        strcpy(futebol[cfut].jogadores[contFut].tabIMC, "Abaixo do peso");
+                    } else if(futebol[cfut].jogadores[contFut].imc < 24,9){
+                        strcpy(futebol[cfut].jogadores[contFut].tabIMC, "Peso normal");
+                    } else if(futebol[cfut].jogadores[contFut].imc < 29,9){
+                        strcpy(futebol[cfut].jogadores[contFut].tabIMC, "Excesso de peso");
+                    } else if(futebol[cfut].jogadores[contFut].imc < 34,9){
+                        strcpy(futebol[cfut].jogadores[contFut].tabIMC, "Obesidade classe I");
+                    } else if(futebol[cfut].jogadores[contFut].imc < 39,9){
+                        strcpy(futebol[cfut].jogadores[contFut].tabIMC, "Obesidade classe II");
+                    } else if(futebol[cfut].jogadores[contFut].imc < 39,9){
+                        strcpy(futebol[cfut].jogadores[contFut].tabIMC, "Obesidade classe III");
+                    }
 
                     printf("Deseja continuar? <y|n> ");
                     scanf("%c", &sair);
@@ -150,8 +165,34 @@ void main(){
 
         if(check == 1){
             do{
-                printf("\n1 - Exibir time\n2 - Exibir tabela");
-            } while();
+                printf("\n1 - Exibir time\n2 - Exibir dados de um jogador\n3 - Exibir medias do time\n0 - Sair");
+                scanf("%d", &op2);
+
+                switch(op2){
+                case 2:
+                    printf("\nDigite o nome do jogador: ");
+                    fflush(stdin);
+                    gets(auxNome);
+                    for(int x = 0; x <= cfut; x++){
+                printf("\n\n%s\n", futebol[x].nome);
+                for(int y = 0; y < contFut; y++){
+                    printf("Jogador: %s", futebol[x].jogadores[y].jogador);
+                    printf("\nIdade: %d", futebol[x].jogadores[y].idade);
+                    printf("\nPeso: %.2f", futebol[x].jogadores[y].peso);
+                    printf("\nAltura: %.2f", futebol[x].jogadores[y].altura);
+                    printf("\nPosição: %s", futebol[x].jogadores[y].posicao);
+                }
+            }
+                    for(int x = 0; x < cfut; x++)
+                        for(int y = 0; y < contFut; y++
+                            if(strcmp(auxNome, futebol[cfut].jogadores[contFut].nome) == 0){
+                                printf("");
+                        }
+                    break;
+                default:
+                    printf("\nopção inválida");
+                }
+            } while(op2 != 0);
         }
 
     } while(op != 0);
