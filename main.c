@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <locale.h>
+#include <ctype.h>
 
 void main(){
     setlocale(LC_ALL, "Portuguese");
 
-    int op, op2, contFut, cfut, contVol, cvol, contBas, cbas, check;
-    contFut = cfut = contVol = cvol = contBas = cbas = 0;
+    int op, op2, contFut, cfut, contVol, cvol, contBas, cbas, check, flag, teste;
+    contFut = cfut = contVol = cvol = contBas = cbas = flag = 0;
     char sair, auxNome[30];
 
     struct jogador{
@@ -169,25 +170,45 @@ void main(){
                 scanf("%d", &op2);
 
                 switch(op2){
+                case 1:
+                printf("\nDigite o nome do Time: ");
+                fflush(stdin);
+                gets(auxNome);
+                for(int x = 0; x < cfut; x++)
+                    for(int y = 0; y < contFut; y++){
+                        teste = strcmp(auxNome, futebol[x].jogadores[y].jogador);
+                        printf("\n\n%d\n\n", teste);
+                        if(strcmp(auxNome, futebol[x].nome) == 0){
+                            flag = 1;
+                            printf("Jogador: %s", futebol[x].jogadores[y].jogador);
+                            printf("\nIdade: %d", futebol[x].jogadores[y].idade);
+                            printf("\nPeso: %.2f", futebol[x].jogadores[y].peso);
+                            printf("\nAltura: %.2f", futebol[x].jogadores[y].altura);
+                            printf("\nPosição: %s", futebol[x].jogadores[y].posicao);
+                        }
+                    }
+                if(!flag)
+                    printf("\nEsse jogador não está cadastrados no banco de dados");
+                break;
                 case 2:
                     printf("\nDigite o nome do jogador: ");
                     fflush(stdin);
                     gets(auxNome);
-                    for(int x = 0; x <= cfut; x++){
-                printf("\n\n%s\n", futebol[x].nome);
-                for(int y = 0; y < contFut; y++){
-                    printf("Jogador: %s", futebol[x].jogadores[y].jogador);
-                    printf("\nIdade: %d", futebol[x].jogadores[y].idade);
-                    printf("\nPeso: %.2f", futebol[x].jogadores[y].peso);
-                    printf("\nAltura: %.2f", futebol[x].jogadores[y].altura);
-                    printf("\nPosição: %s", futebol[x].jogadores[y].posicao);
-                }
-            }
                     for(int x = 0; x < cfut; x++)
-                        for(int y = 0; y < contFut; y++
-                            if(strcmp(auxNome, futebol[cfut].jogadores[contFut].nome) == 0){
-                                printf("");
+                        for(int y = 0; y < contFut; y++){
+                            teste = strcmp(auxNome, futebol[x].jogadores[y].jogador);
+                            printf("\n\n%d\n\n", teste);
+                            if(strcmp(auxNome, futebol[x].jogadores[y].jogador) == 0){
+                                flag = 1;
+                                printf("Jogador: %s", futebol[x].jogadores[y].jogador);
+                                printf("\nIdade: %d", futebol[x].jogadores[y].idade);
+                                printf("\nPeso: %.2f", futebol[x].jogadores[y].peso);
+                                printf("\nAltura: %.2f", futebol[x].jogadores[y].altura);
+                                printf("\nPosição: %s", futebol[x].jogadores[y].posicao);
+                            }
                         }
+                    if(!flag)
+                        printf("\nEsse jogador não está cadastrados no banco de dados");
                     break;
                 default:
                     printf("\nopção inválida");
