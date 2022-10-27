@@ -6,15 +6,15 @@
 void main(){
     setlocale(LC_ALL, "Portuguese");
 
-    int op, contFut, cfut, contVol, cvol, contBas, cbas, check, flag, flag2;
-    contFut = cfut = contVol = cvol = contBas = cbas = flag = flag2 = 0;
+    int op, cont, ctime, check, flag, flag2;
+    cont = ctime = flag = flag2 = 0;
     char sair, auxNome[30], aux;
-    float calculo;
+    float calculo, caloria;
 
     struct jogador{
         char jogador[30], posicao[30], tabIMC[30];
         int idade;
-        float peso, altura, imc, proteina, carbo, lipidios, calorias;
+        float peso, altura, imc;
     };
 
     struct time {
@@ -22,45 +22,45 @@ void main(){
         struct jogador jogadores[20];
     } futebol[20];
 
-    do{
-        printf("1 - Futebol\n2 - Volei\n3 - Basquete\n0 - Sair");
-        printf("\nEscolha o esporte: ");
-        scanf("%d", &op);
-        system("cls");
+    printf("1 - Inserir time\n0 - Sair");
+    printf("\nEscolha o esporte: ");
+    scanf("%d", &op);
+    system("cls");
 
+    do{
         switch(op){
             case 1:
                 printf("Digite o nome do time: ");
                 fflush(stdin);
-                gets(futebol[cfut].nome);
-
+                gets(futebol[ctime].nome);
+                printf("\n");
                 do{
-                    printf("\nDigite o nome do jogador: ");
+                    printf("Digite o nome do jogador: ");
                     fflush(stdin);
-                    gets(futebol[cfut].jogadores[contFut].jogador);
+                    gets(futebol[ctime].jogadores[cont].jogador);
 
                     printf("Digite a idade: ");
-                    scanf("%d", &futebol[cfut].jogadores[contFut].idade);
+                    scanf("%d", &futebol[ctime].jogadores[cont].idade);
 
                     printf("Digite o peso em kg: ");
-                    scanf("%f", &futebol[cfut].jogadores[contFut].peso);
+                    scanf("%f", &futebol[ctime].jogadores[cont].peso);
 
                     printf("Digite a altura em metros: ");
-                    scanf("%f", &futebol[cfut].jogadores[contFut].altura);
+                    scanf("%f", &futebol[ctime].jogadores[cont].altura);
 
                     printf("Digite a posição em que o jogador atua: ");
                     fflush(stdin);
-                    gets(futebol[cfut].jogadores[contFut].posicao);
+                    gets(futebol[ctime].jogadores[cont].posicao);
 
-                    futebol[cfut].jogadores[contFut].imc = futebol[cfut].jogadores[contFut].peso / pow(futebol[cfut].jogadores[contFut].altura,2);
+                    futebol[ctime].jogadores[cont].imc = futebol[ctime].jogadores[cont].peso / pow(futebol[ctime].jogadores[cont].altura,2);
 
-                    printf("Deseja continuar? <y|n> ");
+                    printf("Deseja continuar? <s|n> ");
                     scanf("%c", &sair);
                     system("cls");
-                    contFut++;
-                } while(sair == 'y' || sair == 'Y');
-                cfut++;
-                contFut = 0;
+                    cont++;
+                } while(sair == 's' || sair == 'S');
+                ctime++;
+                cont = 0;
             break;
 
             case 0:
@@ -73,7 +73,8 @@ void main(){
 
         printf("Deseja fazer avaliação de jogadores ou cadastrar um novo time? <1 - 2> ");
         scanf("%d", &check);
-
+        fflush(stdin);
+        system("cls");
         if(check == 1){
             do{
                 printf("A - Exibir time\nB - Exibir dados de um jogador\nC - Exibir medias do time\nD - Modificar dados do jogador\nS - Sair");
@@ -90,19 +91,19 @@ void main(){
                     gets(auxNome);
                     flag = 0;
                     flag2 = 0;
-                    for(int x = 0; x < cfut; x++){
-                        for(int y = 0; y < 20; y++){
+                    for(int x = 0; x < ctime; x++){
                             if(strcmp(auxNome, futebol[x].nome) == 0){
                                 flag = 1;
                                 printf("\nJogadores do Time %s\n", futebol[x].nome);
-                                if(futebol[x].jogadores[y].idade == 0 && futebol[x].jogadores[y].peso == 0 && futebol[x].jogadores[y].altura == 0)
-                                    break;
-                                else {
-                                    flag2 = 1;
-                                    printf("\nJogador: %s", futebol[x].jogadores[y].jogador);
-                                    printf("\tPosição: %s", futebol[x].jogadores[y].posicao);
-                                    printf("\n");
-                                }
+                            }
+                        for(int y = 0; y < 20; y++){
+                            if(futebol[x].jogadores[y].idade == 0 && futebol[x].jogadores[y].peso == 0 && futebol[x].jogadores[y].altura == 0)
+                                break;
+                            else {
+                                flag2 = 1;
+                                printf("\nJogador: %s", futebol[x].jogadores[y].jogador);
+                                printf("\tPosição: %s", futebol[x].jogadores[y].posicao);
+                                printf("\n");
                             }
                         }
                         if(!flag2)
@@ -116,7 +117,7 @@ void main(){
                 printf("\nDigite o nome do Jogador: ");
                 fflush(stdin);
                 gets(auxNome);
-                for(int x = 0; x < cfut; x++){
+                for(int x = 0; x < ctime; x++){
                     for(int y = 0; y < 20; y++){
                         if(futebol[x].jogadores[y].idade == 0 && futebol[x].jogadores[y].peso == 0 && futebol[x].jogadores[y].altura == 0)
                             break;
@@ -130,33 +131,67 @@ void main(){
                             printf("\nPosição: %s", futebol[x].jogadores[y].posicao);
                             printf("\nIMC: %.2f", futebol[x].jogadores[y].imc);
                             calculo = 15.057 * futebol[x].jogadores[y].peso + 692.2;
-                            printf("\nCalculo: %.2f", calculo);
                             // Tabela IMC
                             if(futebol[x].jogadores[y].imc < 19){
-                                printf("\nIMC: %.2f", futebol[x].jogadores[y].imc);
-                                printf("O jogador está abaixo do peso.\nDeve consumir %.2f kcal diárias para engordar 2kg por mês",  calculo + 500);
+                                caloria = calculo + 500;
+                                printf("\nO jogador está abaixo do peso.\nDeve consumir %.2f kcal diárias para engordar 2kg por mês",  caloria);
+                                printf("\n--------Tabela de macronutrientes a serem consumidos--------\n");
+                                printf("\n        Calorias    :                %.2fkcal", caloria);
+                                printf("\n        Proteína    :                 %.2fkcal", caloria*0.25);
+                                printf("\n        Lipídios    :                 %.2fkcal", caloria*0.25);
+                                printf("\n        Carboidratos:                 %.2fkcal", caloria*0.5);
                             } else if(futebol[x].jogadores[y].imc < 25){
-                                printf("\nIMC: %.2f", futebol[x].jogadores[y].imc);
-                                printf("O jogador está com o peso regular/normal.\nDeve consumir %.2f kcal diárias para manter o peso atual", calculo);
+                                printf("\n\nO jogador está com o peso regular/normal.\nDeve consumir %.2f kcal diárias para manter o peso atual", calculo);
+                                printf("\n--------Tabela de macronutrientes a serem consumidos--------\n");
+                                printf("\n        Calorias    :                %.2fkcal", calculo);
+                                printf("\n        Proteína    :                 %.2fkcal", calculo*0.25);
+                                printf("\n        Lipídios    :                 %.2fkcal", calculo*0.25);
+                                printf("\n        Carboidratos:                 %.2fkcal", calculo*0.5);
                             } else if(futebol[x].jogadores[y].imc < 30){
-                                printf("\nIMC: %.2f", futebol[x].jogadores[y].imc);
-                                printf("O jogador está com excesso de peso.\nDeve consumir %.2f kcal diárias para emagrecer 2kg por mês", calculo - 500);
+                                caloria = calculo - 500;
+                                printf("\nO jogador está com excesso de peso.\nDeve consumir %.2f kcal diárias para emagrecer 2kg por mês", caloria);
+                                printf("\n--------Tabela de macronutrientes a serem consumidos--------\n");
+                                printf("\n        Calorias    :                %.2fkcal", caloria);
+                                printf("\n        Proteína    :                 %.2fkcal", caloria*0.25);
+                                printf("\n        Lipídios    :                 %.2fkcal", caloria*0.25);
+                                printf("\n        Carboidratos:                 %.2fkcal", caloria*0.5);
                             } else if(futebol[x].jogadores[y].imc < 35){
-                                printf("\nIMC: %.2f", futebol[x].jogadores[y].imc);
-                                printf("O jogador está com Obesidade classe I.\nDeve consumir %.2f kcal diárias para emagrecer 2kg por mês", calculo - 500);
+                                caloria = calculo - 500;
+                                printf("\nO jogador está com Obesidade classe I.\nDeve consumir %.2f kcal diárias para emagrecer 2kg por mês", caloria);
+                                printf("\n--------Tabela de macronutrientes a serem consumidos--------\n");
+                                printf("\n        Calorias    :                %.2fkcal", caloria);
+                                printf("\n        Proteína    :                 %.2fkcal", caloria*0.25);
+                                printf("\n        Lipídios    :                 %.2fkcal", caloria*0.25);
+                                printf("\n        Carboidratos:                 %.2fkcal", caloria*0.5);
                             } else if(futebol[x].jogadores[y].imc < 40){
-                                printf("\nIMC: %.2f", futebol[x].jogadores[y].imc);
-                                printf("O jogador está com Obesidade classe II.\nDeve consumir %.2f kcal diárias para emagrecer 2kg por mês", calculo - 500);
+                                caloria = calculo - 500;
+                                printf("\nO jogador está com Obesidade classe II.\nDeve consumir %.2f kcal diárias para emagrecer 2kg por mês", caloria);
+                                printf("\n--------Tabela de macronutrientes a serem consumidos--------\n");
+                                printf("\n        Calorias    :                %.2fkcal", caloria);
+                                printf("\n        Proteína    :                 %.2fkcal", caloria*0.25);
+                                printf("\n        Lipídios    :                 %.2fkcal", caloria*0.25);
+                                printf("\n        Carboidratos:                 %.2fkcal", caloria*0.5);
                             } else {
-                                printf("\IMC: %.2f", futebol[x].jogadores[y].imc);
-                                printf("O jogador está com Obesidade classe III.\nDeve consumir %.2f kcal diárias para emagrecer 2kg por mês", calculo - 500);
+                                caloria = calculo - 500;
+                                printf("\nO jogador está com Obesidade classe III.\nDeve consumir %.2f kcal diárias para emagrecer 2kg por mês", caloria);
+                                printf("\n--------Tabela de macronutrientes a serem consumidos--------\n");
+                                printf("\n        Calorias    :                %.2fkcal", caloria);
+                                printf("\n        Proteína    :                 %.2fkcal", caloria*0.25);
+                                printf("\n        Lipídios    :                 %.2fkcal", caloria*0.25);
+                                printf("\n        Carboidratos:                 %.2fkcal", caloria*0.5);
                             }
+                            printf("\n");
                         }
                     }
                 }
                 if(!flag)
                     printf("\nEsse jogador não está cadastrado no banco de dados");
                 break;
+
+                case 'c':
+                case 'C':
+
+                    break;
                 case 's':
                 case 'S':
                     printf("\nVoltando ao menu inicial...");
@@ -169,6 +204,10 @@ void main(){
             } while(sair != 's' && sair != 'S');
         }
 
+        printf("1 - Inserir time\n2 - Inserir Jogadores em um time\n0 - Sair");
+        printf("\nEscolha o esporte: ");
+        scanf("%d", &op);
+        system("cls");
     } while(op != 0);
 
 }
