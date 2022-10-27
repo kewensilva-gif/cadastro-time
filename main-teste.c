@@ -152,7 +152,7 @@ void main(){
                 printf("\nOpção inválida");
         }
 
-        printf("Deseja fazer avaliação de jogadores ou cadastrar um novo time? <1 - 2> ");
+        printf("Deseja avançar para o menu de estatisticas e informações ou voltar ao menu de cadastro? <1 - 2> ");
         scanf("%d", &check);
         fflush(stdin);
         system("cls");
