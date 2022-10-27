@@ -8,7 +8,7 @@ void main(){
 
     int op, cont, ctime, check, flag, flag2, direto;
     cont = ctime = flag = flag2 = direto = 0;
-    char sair, auxNome[30], aux;
+    char sair, auxNome[30], aux, op2;
     float calculo, caloria;
 
     struct jogador{
@@ -119,7 +119,7 @@ void main(){
                                         fflush(stdin);
                                         gets(times[x].jogadores[y].jogador);
 
-                                        printf("Digite a idade atualizada: ");
+                                        printf("Digite a idade: ");
                                         scanf("%d", &times[x].jogadores[y].idade);
 
                                         printf("Digite o peso em kg: ");
@@ -145,6 +145,74 @@ void main(){
                 break;
 
             case 4:
+                printf("\nDigite o time em que o jogador atua: ");
+                fflush(stdin);
+                gets(auxNome);
+                for(int x = 0; x < ctime; x++){
+                    if(strcmp(auxNome, times[x].nome) == 0){
+                        flag = 1;
+                        printf("\nDigite o nome do jogador que deseja modificar os dados: ");
+                        fflush(stdin);
+                        gets(auxNome);
+                            for(int y = 0; y < 20; y++){
+                                if(times[x].jogadores[y].idade == 0 && times[x].jogadores[y].peso == 0 && times[x].jogadores[y].altura == 0)
+                                    break;
+
+                                else if(strcmp(auxNome, times[x].jogadores[y].jogador) == 0){
+                                        flag2 = 1;
+                                        printf("\nA - Modificar o nome\nB - Modificar a idade\nC - Modificar o peso\nD - Modificar a altura\nE - Modificar a posição");
+                                        printf("\nSelecione a opção desejada: ");
+                                        fflush(stdin);
+                                        scanf("%c", &op2);
+                                        switch(op2){
+                                        case 'a':
+                                        case 'A':
+                                            printf("\nDigite o nome atualizado do jogador: ");
+                                            fflush(stdin);
+                                            gets(times[x].jogadores[y].jogador);
+                                            break;
+
+                                        case 'b':
+                                        case 'B':
+                                            printf("Digite a idade atualizada: ");
+                                            scanf("%d", &times[x].jogadores[y].idade);
+                                            break;
+
+                                        case 'c':
+                                        case 'C':
+                                            printf("Digite o peso em kg atualizado: ");
+                                            scanf("%f", &times[x].jogadores[y].peso);
+                                            break;
+
+                                        case 'd':
+                                        case 'D':
+                                            printf("Digite a altura em metros atualizada: ");
+                                            scanf("%f", &times[x].jogadores[y].altura);
+                                            break;
+
+                                        case 'e':
+                                        case 'E':
+                                            printf("Digite a posição em que o jogador atua atualizada: ");
+                                            fflush(stdin);
+                                            gets(times[x].jogadores[y].posicao);
+                                            break;
+
+                                        default:
+                                            printf("\nOpção inválida");
+                                        }
+                                        break;
+                                }
+                            }
+                        }
+                    }
+
+                if(!flag)
+                printf("\nEste time não está cadastrados no banco de dados");
+                if(!flag2)
+                printf("\nEste jogador não foi cadastrado");
+                break;
+
+            case 5:
                 direto = 1;
                 break;
 
@@ -165,7 +233,7 @@ void main(){
         }
         if(check == 1){
             do{
-                printf("A - Exibir times cadastrados\nB - Exibir time\nC - Exibir dados de um jogador\nS - Sair");
+                printf("A - Exibir times cadastrados\nB - Exibir jogadores do time\nC - Exibir dados de um jogador\nS - Sair");
                 printf("\nDigite a opção desejada: ");
                 fflush(stdin);
                 scanf("%c", &sair);
@@ -305,7 +373,7 @@ void main(){
             } while(sair != 's' && sair != 'S');
         }
 
-        printf("1 - Inserir novo time\n2 - Inserir novos jogadores em um time\n3 - Modificar dados do jogador\n4 - Avançar para o menu de estatísticas\n0 - Sair");
+        printf("1 - Inserir novo time\n2 - Inserir novos jogadores em um time\n3 - Modificar todos os dados do jogador\n4 - Modificar dados específicos do jogador\n5 - Avançar para o menu de estatísticas\n0 - Sair");
         printf("\nEscolha o esporte: ");
         scanf("%d", &op);
         system("cls");
