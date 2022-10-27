@@ -6,8 +6,8 @@
 void main(){
     setlocale(LC_ALL, "Portuguese");
 
-    int op, cont, ctime, check, flag, flag2;
-    cont = ctime = flag = flag2 = 0;
+    int op, cont, ctime, check, flag, flag2, direto;
+    cont = ctime = flag = flag2 = direto = 0;
     char sair, auxNome[30], aux;
     float calculo, caloria;
 
@@ -144,6 +144,10 @@ void main(){
                 printf("\nEste jogador não foi cadastrado");
                 break;
 
+            case 4:
+                direto = 1;
+                break;
+
             case 0:
                 printf("\nSaindo do programa...");
             break;
@@ -151,14 +155,17 @@ void main(){
             default:
                 printf("\nOpção inválida");
         }
-
-        printf("Deseja avançar para o menu de estatisticas e informações ou voltar ao menu de cadastro? <1 - 2> ");
-        scanf("%d", &check);
-        fflush(stdin);
-        system("cls");
+        if(!direto){
+            printf("\nDeseja avançar para o menu de estatisticas e informações ou voltar ao menu de cadastro? <1 - 2> ");
+            scanf("%d", &check);
+            fflush(stdin);
+            system("cls");
+        } else{
+            check = 1;
+        }
         if(check == 1){
             do{
-                printf("A - Exibir time\nB - Exibir dados de um jogador\nC - Exibir medias do time\nS - Sair");
+                printf("A - Exibir times cadastrados\nB - Exibir time\nC - Exibir dados de um jogador\nS - Sair");
                 printf("\nDigite a opção desejada: ");
                 fflush(stdin);
                 scanf("%c", &sair);
@@ -167,6 +174,23 @@ void main(){
                 switch(sair){
                 case 'a':
                 case 'A':
+                printf("\n-------Lista de times cadastrados-------");
+                for(int x = 0; x < ctime; x++){
+                    printf("\n%s", times[x].nome);
+                    for(int y = 0; y < 20; y++){
+                        if(times[x].jogadores[y].idade == 0 && times[x].jogadores[y].peso == 0 && times[x].jogadores[y].altura == 0)
+                            break;
+                        else
+                            cont++;
+                    }
+                    printf("\nQuantidade de jogadores: %d", cont);
+                    cont = 0;
+                }
+                printf("\n");
+                    break;
+
+                case 'b':
+                case 'B':
                     printf("\nDigite o nome do Time: ");
                     fflush(stdin);
                     gets(auxNome);
@@ -193,8 +217,8 @@ void main(){
                             printf("\nNão há jogadores cadastrados nesse time");
                     }
                     break;
-                case 'b':
-                case 'B':
+                case 'c':
+                case 'C':
                 printf("\nDigite o nome do Jogador: ");
                 fflush(stdin);
                 gets(auxNome);
@@ -269,10 +293,6 @@ void main(){
                     printf("\nEsse jogador não está cadastrado no banco de dados");
                 break;
 
-                case 'c':
-                case 'C':
-
-                    break;
                 case 's':
                 case 'S':
                     printf("\nVoltando ao menu inicial...");
@@ -285,7 +305,7 @@ void main(){
             } while(sair != 's' && sair != 'S');
         }
 
-        printf("1 - Inserir time\n2 - Inserir novos jogadores em um time\n3 - Modificar dados do jogador\n0 - Sair");
+        printf("1 - Inserir novo time\n2 - Inserir novos jogadores em um time\n3 - Modificar dados do jogador\n4 - Avançar para o menu de estatísticas\n0 - Sair");
         printf("\nEscolha o esporte: ");
         scanf("%d", &op);
         system("cls");
