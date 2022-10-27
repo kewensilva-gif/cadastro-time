@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <locale.h>
-#include <ctype.h>
 
 void main(){
     setlocale(LC_ALL, "Portuguese");
@@ -394,5 +393,4 @@ void main(){
         scanf("%d", &op);
         system("cls");
     } while(op != 0);
-
 }
