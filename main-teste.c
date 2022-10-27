@@ -64,6 +64,22 @@ void main(){
             break;
 
             case 2:
+                printf("\nDigite o time que deseja alterar o nome: ");
+                fflush(stdin);
+                gets(auxNome);
+                for(int x = 0; x < ctime; x++){
+                    if(strcmp(auxNome, times[x].nome) == 0){
+                    flag = 1;
+                    printf("\nDigite o novo nome do time: ");
+                    fflush(stdin);
+                    gets(times[x].nome);
+                    }
+                }
+                if(!flag)
+                    printf("\nEste time não está cadastrados no banco de dados");
+                break;
+
+            case 3:
                 printf("\nDigite o time em que deseja inserir novos jogadores: ");
                 fflush(stdin);
                 gets(auxNome);
@@ -98,7 +114,7 @@ void main(){
                 printf("\nEste time não está cadastrados no banco de dados");
                 break;
 
-            case 3:
+            case 4:
                 printf("\nDigite o time em que o jogador atua: ");
                 fflush(stdin);
                 gets(auxNome);
@@ -144,7 +160,7 @@ void main(){
                 printf("\nEste jogador não foi cadastrado");
                 break;
 
-            case 4:
+            case 5:
                 printf("\nDigite o time em que o jogador atua: ");
                 fflush(stdin);
                 gets(auxNome);
@@ -212,7 +228,7 @@ void main(){
                 printf("\nEste jogador não foi cadastrado");
                 break;
 
-            case 5:
+            case 6:
                 direto = 1;
                 break;
 
@@ -373,7 +389,7 @@ void main(){
             } while(sair != 's' && sair != 'S');
         }
 
-        printf("1 - Inserir novo time\n2 - Inserir novos jogadores em um time\n3 - Modificar todos os dados do jogador\n4 - Modificar dados específicos do jogador\n5 - Avançar para o menu de estatísticas\n0 - Sair");
+        printf("1 - Inserir novo time\n2 - Modificar nome do time\n3 - Inserir novos jogadores em um time\n4 - Modificar todos os dados do jogador\n5 - Modificar dados específicos do jogador\n6 - Avançar para o menu de estatísticas\n0 - Sair");
         printf("\nEscolha o esporte: ");
         scanf("%d", &op);
         system("cls");
