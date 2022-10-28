@@ -72,6 +72,7 @@ void main(){
                     printf("\nDigite o novo nome do time: ");
                     fflush(stdin);
                     gets(times[x].nome);
+                    printf("\nO nome do time foi alterado com sucesso!\n");
                     }
                 }
                 if(!flag)
@@ -103,6 +104,7 @@ void main(){
                                 printf("Digite a posição em que o jogador atua: ");
                                 fflush(stdin);
                                 gets(times[x].jogadores[y].posicao);
+                                printf("\nO jogador foi inserido com sucesso!\n");
 
                                 break;
                             }
@@ -147,6 +149,7 @@ void main(){
                                         fflush(stdin);
                                         gets(times[x].jogadores[y].posicao);
 
+                                        printf("\nOs dados do jogador foram modificados com sucesso!\n");
                                         break;
                                 }
                             }
@@ -185,24 +188,28 @@ void main(){
                                             printf("\nDigite o nome atualizado do jogador: ");
                                             fflush(stdin);
                                             gets(times[x].jogadores[y].jogador);
+                                            printf("\nO nome do jogador foi atualizado com sucesso!\n");
                                             break;
 
                                         case 'b':
                                         case 'B':
                                             printf("Digite a idade atualizada: ");
                                             scanf("%d", &times[x].jogadores[y].idade);
+                                            printf("\nA idade do jogador foi atualizada com sucesso!\n");
                                             break;
 
                                         case 'c':
                                         case 'C':
                                             printf("Digite o peso em kg atualizado: ");
                                             scanf("%f", &times[x].jogadores[y].peso);
+                                            printf("\nO peso do jogador foi atualizado com sucesso!\n");
                                             break;
 
                                         case 'd':
                                         case 'D':
                                             printf("Digite a altura em metros atualizada: ");
                                             scanf("%f", &times[x].jogadores[y].altura);
+                                            printf("\nA altura do jogador foi atualzada com sucesso!\n");
                                             break;
 
                                         case 'e':
@@ -210,6 +217,7 @@ void main(){
                                             printf("Digite a posição em que o jogador atua atualizada: ");
                                             fflush(stdin);
                                             gets(times[x].jogadores[y].posicao);
+                                            printf("\nA posição do jogador foi atualizada com sucesso!\n");
                                             break;
 
                                         default:
@@ -248,7 +256,7 @@ void main(){
         }
         if(check == 1){
             do{
-                printf("A - Exibir times cadastrados\nB - Exibir jogadores do time\nC - Exibir dados de um jogador\nS - Sair");
+                printf("A - Exibir times cadastrados\nB - Exibir jogadores do time\nC - Exibir dados e avaliação de um jogador\nS - Sair");
                 printf("\nDigite a opção desejada: ");
                 fflush(stdin);
                 scanf("%c", &sair);
@@ -373,7 +381,7 @@ void main(){
                     }
                 }
                 if(!flag)
-                    printf("\nEsse jogador não está cadastrado no banco de dados");
+                    printf("\nEsse jogador não está cadastrado no banco de dados\n");
                 break;
 
                 case 's':
