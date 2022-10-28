@@ -14,7 +14,7 @@ void main(){
         char jogador[30], posicao[30], tabIMC[30];
         int idade;
         float peso, altura, imc;
-    } auxTimes;
+    };
 
     struct time {
         char nome[30];
@@ -325,47 +325,47 @@ void main(){
                                 printf("\nO jogador está abaixo do peso.\nDeve consumir %.2f kcal diárias para engordar 2kg por mês",  caloria);
                                 printf("\n--------Tabela de macronutrientes a serem consumidos--------\n");
                                 printf("\n        Calorias    :                %.2fkcal", caloria);
-                                printf("\n        Proteína    :                 %.2fkcal", caloria*0.35);
-                                printf("\n        Lipídios    :                 %.2fkcal", caloria*0.15);
+                                printf("\n        Proteína    :                 %.2fkcal", caloria*0.30);
+                                printf("\n        Lipídios    :                 %.2fkcal", caloria*0.20);
                                 printf("\n        Carboidratos:                 %.2fkcal", caloria*0.5);
                             } else if(times[x].jogadores[y].imc < 25){
                                 printf("\n\nO jogador está com o peso regular/normal.\nDeve consumir %.2f kcal diárias para manter o peso atual", calculo);
                                 printf("\n--------Tabela de macronutrientes a serem consumidos--------\n");
                                 printf("\n        Calorias    :                %.2fkcal", calculo);
-                                printf("\n        Proteína    :                 %.2fkcal", calculo*0.35);
-                                printf("\n        Lipídios    :                 %.2fkcal", calculo*0.15);
+                                printf("\n        Proteína    :                 %.2fkcal", calculo*0.30);
+                                printf("\n        Lipídios    :                 %.2fkcal", calculo*0.20);
                                 printf("\n        Carboidratos:                 %.2fkcal", calculo*0.5);
                             } else if(times[x].jogadores[y].imc < 30){
                                 caloria = calculo - 500;
                                 printf("\nO jogador está com excesso de peso.\nDeve consumir %.2f kcal diárias para emagrecer 2kg por mês", caloria);
                                 printf("\n--------Tabela de macronutrientes a serem consumidos--------\n");
                                 printf("\n        Calorias    :                %.2fkcal", caloria);
-                                printf("\n        Proteína    :                 %.2fkcal", caloria*0.35);
-                                printf("\n        Lipídios    :                 %.2fkcal", caloria*0.15);
+                                printf("\n        Proteína    :                 %.2fkcal", caloria*0.30);
+                                printf("\n        Lipídios    :                 %.2fkcal", caloria*0.20);
                                 printf("\n        Carboidratos:                 %.2fkcal", caloria*0.5);
                             } else if(times[x].jogadores[y].imc < 35){
                                 caloria = calculo - 500;
                                 printf("\nO jogador está com Obesidade classe I.\nDeve consumir %.2f kcal diárias para emagrecer 2kg por mês", caloria);
                                 printf("\n--------Tabela de macronutrientes a serem consumidos--------\n");
                                 printf("\n        Calorias    :                %.2fkcal", caloria);
-                                printf("\n        Proteína    :                 %.2fkcal", caloria*0.35);
-                                printf("\n        Lipídios    :                 %.2fkcal", caloria*0.15);
+                                printf("\n        Proteína    :                 %.2fkcal", caloria*0.30);
+                                printf("\n        Lipídios    :                 %.2fkcal", caloria*0.20);
                                 printf("\n        Carboidratos:                 %.2fkcal", caloria*0.5);
                             } else if(times[x].jogadores[y].imc < 40){
                                 caloria = calculo - 500;
                                 printf("\nO jogador está com Obesidade classe II.\nDeve consumir %.2f kcal diárias para emagrecer 2kg por mês", caloria);
                                 printf("\n--------Tabela de macronutrientes a serem consumidos--------\n");
                                 printf("\n        Calorias    :                %.2fkcal", caloria);
-                                printf("\n        Proteína    :                 %.2fkcal", caloria*0.35);
-                                printf("\n        Lipídios    :                 %.2fkcal", caloria*0.15);
+                                printf("\n        Proteína    :                 %.2fkcal", caloria*0.30);
+                                printf("\n        Lipídios    :                 %.2fkcal", caloria*0.20);
                                 printf("\n        Carboidratos:                 %.2fkcal", caloria*0.5);
                             } else {
                                 caloria = calculo - 500;
                                 printf("\nO jogador está com Obesidade classe III.\nDeve consumir %.2f kcal diárias para emagrecer 2kg por mês", caloria);
                                 printf("\n--------Tabela de macronutrientes a serem consumidos--------\n");
                                 printf("\n        Calorias    :                %.2fkcal", caloria);
-                                printf("\n        Proteína    :                 %.2fkcal", caloria*0.35);
-                                printf("\n        Lipídios    :                 %.2fkcal", caloria*0.15);
+                                printf("\n        Proteína    :                 %.2fkcal", caloria*0.30);
+                                printf("\n        Lipídios    :                 %.2fkcal", caloria*0.20);
                                 printf("\n        Carboidratos:                 %.2fkcal", caloria*0.5);
                             }
                             printf("\n");
