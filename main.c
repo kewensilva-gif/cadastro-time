@@ -253,6 +253,7 @@ void main(){
             system("cls");
         } else{
             check = 1;
+            direto = 0;
         }
         if(check == 1){
             do{
